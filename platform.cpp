@@ -1,8 +1,7 @@
 #include "platform.h"
 
 Platform::Platform(const QVector2D &pos, const QVector2D &size, const QVector2D &speed)
-    : _sizePlatform(size),
-      _velocity(speed),
+    : _velocity(speed),
       _platform(QPoint(pos.x(), pos.y()), QSizeF(size.x(), size.y()))
 {
 }
@@ -34,8 +33,22 @@ float Platform::getTopSide() const
     return _platform.top();
 }
 
+float Platform::getBottomSide() const
+{
+    return _platform.bottom();
+}
 
-// скорость
+float Platform::getLeftSide() const
+{
+    return _platform.left();
+}
+
+float Platform::getRightSide() const
+{
+    return _platform.right();
+}
+
+// Скорость
 void Platform::setYVeclocity(const float &posY)
 {
     _velocity.setY(posY);
@@ -46,36 +59,27 @@ void Platform::setXVeclocity(const float &posX)
     _velocity.setX(posX);
 }
 
-float Platform::getXVeclocity()
+float Platform::getXVeclocity() const
 {
     return _velocity.x();
 }
 
-float Platform::getYVeclocity()
+float Platform::getYVeclocity() const
 {
     return _velocity.y();
 }
 
-//размер
-void Platform::setYSize(const float &posY)
+// Размеры квадрата
+void Platform::setSize(const float &posX, const float &posY)
 {
-    _sizePlatform.setY(posY);
+    _platform.setSize(QSizeF(posX, posY));
 }
 
-void Platform::setXSize(const float &posX)
+QSizeF Platform::getSize() const
 {
-    _sizePlatform.setX(posX);
+    return _platform.size();
 }
 
-float Platform::getXSize()
-{
-    return _sizePlatform.x();
-}
-
-float Platform::getYSize()
-{
-    return _sizePlatform.y();
-}
 
 
 

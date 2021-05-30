@@ -9,20 +9,20 @@ RectF::RectF(const float& x,const float& y,
 
 float RectF::leftEdge() const
 {
-    return _origin._x;
+    return _origin.x();
 }
 
 float RectF::rightEdge() const
 {
-    return _origin._x + _size._x;
+    return _origin.x() + _size.x();
 }
 
 float RectF::topEdge() const
 {
-    return _origin._y;
+    return _origin.y();
 }
 
 float RectF::bottomEdge() const
 {
-    return _origin._y + _size._y;
+    return _origin.y() + _size.y();
 }

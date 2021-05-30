@@ -30,46 +30,46 @@ PoolTableScene::PoolTableScene(const RectF &bounds)
 
 void PoolTableScene::updateCurrentPosBall(const float &x, const float &y)
 {
-    _ballPosition._x += x;
-    _ballPosition._y += y;
+    _ballPosition.setX(_ballPosition.x() + x);
+    _ballPosition.setY(_ballPosition.y() + y);
 }
 
 void PoolTableScene::ballHitPlatform(const float &deltaSeconds)
 {
-    updateCurrentPosBall(_ballSpeed._x * deltaSeconds,  _ballSpeed._y * deltaSeconds);
+    updateCurrentPosBall(_ballSpeed.x() * deltaSeconds,  _ballSpeed.y() * deltaSeconds);
 
-    int tmpRightSidePlatfrom = _platform.getXPos() + _platform.getSize().width() - _ballSize._x;
+    int tmpRightSidePlatfrom = _platform.getXPos() + _platform.getSize().width() - _ballSize.x();
     int tmpLeftSidePlatfrom  = _platform.getXPos();
 
     // Hit platform
-    if (_ballPosition._y > _platform.getYPos() - _ballSize._y
-               && _ballPosition._x < tmpRightSidePlatfrom && _ballPosition._x > tmpLeftSidePlatfrom) {
-        _ballPosition._y = _platform.getYPos() - _ballSize._y;
-        _ballSpeed._y = -_ballSpeed._y;
+    if (_ballPosition.y() > _platform.getYPos() - _ballSize.y()
+               && _ballPosition.x() < tmpRightSidePlatfrom && _ballPosition.x() > tmpLeftSidePlatfrom) {
+        _ballPosition.setY(_platform.getYPos() - _ballSize.y());
+        _ballSpeed.setY(-_ballSpeed.y());
     }
 }
 
 void PoolTableScene::ballHitWall(const float &deltaSeconds)
 {
-    updateCurrentPosBall(_ballSpeed._x * deltaSeconds,  _ballSpeed._y * deltaSeconds);
+    updateCurrentPosBall(_ballSpeed.x() * deltaSeconds,  _ballSpeed.y() * deltaSeconds);
 
     // Hit wall
-    if (_ballPosition._x < _bounds.leftEdge())
+    if (_ballPosition.x() < _bounds.leftEdge())
     {
-        _ballPosition._x = _bounds.leftEdge();
-       _ballSpeed._x = -_ballSpeed._x;
+        _ballPosition.setX(_bounds.leftEdge());
+       _ballSpeed.setX(-_ballSpeed.x());
     }
-    else if (_ballPosition._x > _bounds.rightEdge() - _ballSize._x)
+    else if (_ballPosition.x() > _bounds.rightEdge() - _ballSize.x())
     {
-        _ballPosition._x = _bounds.rightEdge() - _ballSize._x;
-        _ballSpeed._x = -_ballSpeed._x;
-    } else if (_ballPosition._y > _bounds.bottomEdge() - _ballSize._y) {
-        _ballPosition._y = _bounds.bottomEdge() - _ballSize._y;
-        _ballSpeed._y = -_ballSpeed._y;
-    } else if (_ballPosition._y < _bounds.topEdge()) {
+        _ballPosition.setX(_bounds.rightEdge() - _ballSize.x());
+        _ballSpeed.setX(-_ballSpeed.x());
+    } else if (_ballPosition.y() > _bounds.bottomEdge() - _ballSize.y()) {
+        _ballPosition.setY(_bounds.bottomEdge() - _ballSize.y());
+        _ballSpeed.setY(-_ballSpeed.y());
+    } else if (_ballPosition.y() < _bounds.topEdge()) {
         // lose
-        _ballPosition._y = _bounds.topEdge();
-        _ballSpeed._y = -_ballSpeed._y;
+        _ballPosition.setY(_bounds.topEdge());
+        _ballSpeed.setY(-_ballSpeed.y());
     }
 }
 
@@ -78,7 +78,7 @@ void PoolTableScene::redraw(QPainter &painter)
     painter.setRenderHint(QPainter::Antialiasing);
 
     painter.setBrush(QBrush(QColor(0x00, 0x00, 0x00)));
-    painter.drawEllipse(QRectF(_ballPosition._x, _ballPosition._y , BALL_SIZE, BALL_SIZE));
+    painter.drawEllipse(QRectF(_ballPosition.x(), _ballPosition.y() , BALL_SIZE, BALL_SIZE));
 
     painter.setBrush(QBrush(QColor(0xff, 0xab, 0x00)));
     painter.drawRect(QRectF(_platform.getXPos(), _platform.getYPos(), _platform.getSize().width(), _platform.getSize().height()));

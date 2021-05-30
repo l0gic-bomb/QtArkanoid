@@ -10,9 +10,9 @@
 #include <QWidget>
 #include <QKeyEvent>
 #include <QEvent>
+#include <QVector2D>
 
 #include "rectf.h"
-#include "vector2f.h"
 
 #include "platform.h"
 
@@ -38,10 +38,10 @@ public:
 
 
 private:   
-    Vector2f _ballPosition;
-    Vector2f _ballSpeed;
+    QVector2D _ballPosition;
+    QVector2D _ballSpeed;
 
-    const Vector2f _ballSize;
+    const QVector2D _ballSize;
     const RectF _bounds;
 
     Platform _platform;

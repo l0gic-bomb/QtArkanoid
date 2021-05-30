@@ -6,7 +6,7 @@
 #ifndef RECTF_H
 #define RECTF_H
 
-#include "vector2f.h"
+#include <QVector2D>
 
 /*! \brief Класс для изменения данных плафтормы */
 class RectF
@@ -26,8 +26,8 @@ public:
     float bottomEdge() const;
 
 private:
-    Vector2f _origin;
-    Vector2f _size;
+    QVector2D _origin;
+    QVector2D _size;
 };
 
 #endif // RECTF_H

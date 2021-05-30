@@ -57,9 +57,6 @@ public:
 private:
     QVector2D _velocity;
     QRectF    _platform;
-
-//    static const int INITIAL_X = 400;
-//    static const int INITIAL_Y = 360;
 };
 
 #endif // PLATFORM_H

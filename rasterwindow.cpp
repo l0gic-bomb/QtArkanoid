@@ -1,9 +1,8 @@
 
 #include <QApplication>
 #include "rasterwindow.h"
-#include <memory>
 
-constexpr unsigned WINDOW_WIDTH = 800;
+constexpr unsigned WINDOW_WIDTH  = 800;
 constexpr unsigned WINDOW_HEIGHT = 800;
 
 RasterWindow::RasterWindow(QWindow* parent)

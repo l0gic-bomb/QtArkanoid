@@ -3,22 +3,20 @@
 #include "pooltablescene.h"
 
 namespace  {
-// шарик
+//! ball
 constexpr float BALL_SPEED_X = 150;
 constexpr float BALL_SPEED_Y = 150;
 constexpr float BALL_SIZE = 30;
 
-// платформа
+//! platform
 constexpr float PLATFORM_SPEED_X = 10;
 constexpr float PLATFORM_SPEED_Y = 0;
 
 constexpr float PLATFORM_POS_X = 400;
-constexpr float PLATFORM_POS_Y = 500;
+constexpr float PLATFORM_POS_Y = 750;
 
 constexpr float PLATFORM_WIDTH = 150;
 constexpr float PLATFORM_HEIGHT = 50;
-
-
 }
 
 PoolTableScene::PoolTableScene(const RectF &bounds)
@@ -38,8 +36,9 @@ void PoolTableScene::updateCurrentPosBall(const float &x, const float &y)
 
 void PoolTableScene::ballHitPlatform(const float &deltaSeconds)
 {
-    int tmpValBall = _ballPosition._x;
-    int tmpRightSidePlatfrom = _platform.getXPos() + _platform.getXSize();
+    updateCurrentPosBall(_ballSpeed._x * deltaSeconds,  _ballSpeed._y * deltaSeconds);
+
+    int tmpRightSidePlatfrom = _platform.getXPos() + _platform.getSize().width() - _ballSize._x;
     int tmpLeftSidePlatfrom  = _platform.getXPos();
 
     // Hit platform
@@ -68,32 +67,31 @@ void PoolTableScene::ballHitWall(const float &deltaSeconds)
         _ballPosition._y = _bounds.bottomEdge() - _ballSize._y;
         _ballSpeed._y = -_ballSpeed._y;
     } else if (_ballPosition._y < _bounds.topEdge()) {
+        // lose
         _ballPosition._y = _bounds.topEdge();
         _ballSpeed._y = -_ballSpeed._y;
     }
-
-
 }
 
 void PoolTableScene::redraw(QPainter &painter)
 {
-    painter.setRenderHint(QPainter::Antialiasing); //! сглаживание
-    painter.setBrush(QBrush(QColor(0x00, 0x00, 0x00))); //!
+    painter.setRenderHint(QPainter::Antialiasing);
+
+    painter.setBrush(QBrush(QColor(0x00, 0x00, 0x00)));
     painter.drawEllipse(QRectF(_ballPosition._x, _ballPosition._y , BALL_SIZE, BALL_SIZE));
+
     painter.setBrush(QBrush(QColor(0xff, 0xab, 0x00)));
-    painter.drawRect(QRectF(_platform.getXPos(), _platform.getYPos(), _platform.getXSize(), _platform.getYSize()));
+    painter.drawRect(QRectF(_platform.getXPos(), _platform.getYPos(), _platform.getSize().width(), _platform.getSize().height()));
 }
 
 void PoolTableScene::movePlatform(const int &x)
 {
     if ((_platform.getXPos() < _bounds.leftEdge()) && x < 0)
         return;
-    else if ((_platform.getXPos() > _bounds.rightEdge() - _platform.getXSize()) && x > 0)
+    else if ((_platform.getXPos() > _bounds.rightEdge() - _platform.getSize().width()) && x > 0)
         return;
 
-    _platform.setXPos(_platform.getXPos() + x);
-    _platform.setYPos(PLATFORM_POS_Y);
-
+    _platform.movePlatform(x);
 }
 
 

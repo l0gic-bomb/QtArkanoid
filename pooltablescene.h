@@ -25,25 +25,26 @@ public:
 
     //! Перерасчет позиции мяча
     void updateCurrentPosBall(const float& x, const float& y);
-
     //! Обновление данных при соударении со стенками
     void ballHitWall(const float &deltaSeconds);
     //! Обновление данных при соударении с плафтормой
     void ballHitPlatform(const float &deltaSeconds);
 
 
-    //! Перерисовка картинок
+    //! Перерисовка объектов
     void redraw(QPainter& painter);
     //! Перемещение платформы
     void movePlatform(const int& x);
 
-    Platform _platform;
-private:
+
+private:   
     Vector2f _ballPosition;
     Vector2f _ballSpeed;
 
     const Vector2f _ballSize;
     const RectF _bounds;
+
+    Platform _platform;
 };
 
 #endif // POOLTABLESCENE_H

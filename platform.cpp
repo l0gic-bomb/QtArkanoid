@@ -14,7 +14,7 @@ void Platform::setYPos(const float &posY)
 
 void Platform::setXPos(const float &posX)
 {
-    _platform.setX(posX);
+    _platform.moveTopLeft(QPointF(posX,_platform.y()));
 }
 
 float Platform::getXPos() const
@@ -78,6 +78,11 @@ void Platform::setSize(const float &posX, const float &posY)
 QSizeF Platform::getSize() const
 {
     return _platform.size();
+}
+
+void Platform::movePlatform(const int &x)
+{
+    _platform.moveTopLeft(QPointF(_platform.x() + x, _platform.y()));
 }
 
 

@@ -6,12 +6,7 @@
 #include <QResizeEvent>
 #include <QExposeEvent>
 #include <QBackingStore>
-
 #include <QElapsedTimer>
-
-#include <iostream>
-#include <iomanip>
-#include <memory>
 
 #include "pooltablescene.h"
 

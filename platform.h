@@ -51,12 +51,15 @@ public:
     //! Возврат размеров
     QSizeF getSize() const;
 
+    //! Перемещение плафтформы
+    void movePlatform(const int& x);
+
 private:
     QVector2D _velocity;
     QRectF    _platform;
 
-    static const int INITIAL_X = 200;
-    static const int INITIAL_Y = 360;
+//    static const int INITIAL_X = 400;
+//    static const int INITIAL_Y = 360;
 };
 
 #endif // PLATFORM_H

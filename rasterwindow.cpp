@@ -19,11 +19,9 @@ bool RasterWindow::isAnimating() const
     return _isAnimating;
 }
 
-void RasterWindow::setAnimating(const bool &isAnimating)
+void RasterWindow::setAnimating()
 {
-    _isAnimating = isAnimating;
-    if (isAnimating)
-        renderLater();
+    renderLater();
 }
 
 bool RasterWindow::event(QEvent* event)
@@ -83,8 +81,7 @@ void RasterWindow::renderNow()
     updateScene();
     renderScene();
 
-    if (_isAnimating)
-        renderLater();
+    renderLater();
 }
 
 void RasterWindow::updateScene()

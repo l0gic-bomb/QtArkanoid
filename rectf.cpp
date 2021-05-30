@@ -1,3 +1,8 @@
+/**
+ * \file  rectf.h
+ * \brief Класс формы окна на котором будет происходить игра.
+*/
+
 #include "rectf.h"
 
 RectF::RectF(const float& x,const float& y,

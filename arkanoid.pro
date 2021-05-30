@@ -21,7 +21,6 @@ HEADERS += \
     rasterwindow.h \
     rectf.h \
 
-
 FORMS += \
     mainwindow.ui
 

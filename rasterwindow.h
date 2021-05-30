@@ -18,8 +18,9 @@ public:
     //! Конструктор
     explicit RasterWindow(QWindow* parent = nullptr);
 
+
     bool isAnimating() const;
-    void setAnimating(const bool& isAnimating);
+    void setAnimating();
 
 protected:
     //! Обработчик событий

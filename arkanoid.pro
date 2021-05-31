@@ -8,21 +8,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+	bricks.cpp \
+	gamescene.cpp \
     main.cpp \
+	menu.cpp \
 	platform.cpp \
-	pooltablescene.cpp \
 	rasterwindow.cpp \
 	rectf.cpp \
 
 
 HEADERS += \
+	bricks.h \
+	gamescene.h \
+	menu.h \
     platform.h \
-    pooltablescene.h \
     rasterwindow.h \
     rectf.h \
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    menu.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

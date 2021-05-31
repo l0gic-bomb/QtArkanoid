@@ -3,12 +3,16 @@
 
 #include <QWindow>
 #include <QPainter>
+#include <QPaintEvent>
 #include <QResizeEvent>
 #include <QExposeEvent>
 #include <QBackingStore>
 #include <QElapsedTimer>
+#include <QDialog>
 
-#include "pooltablescene.h"
+#include <memory>
+
+#include "gamescene.h"
 
 //! Класс отрисовки изображений
 class RasterWindow : public QWindow
@@ -17,10 +21,6 @@ class RasterWindow : public QWindow
 public:
     //! Конструктор
     explicit RasterWindow(QWindow* parent = nullptr);
-
-
-    bool isAnimating() const;
-    void setAnimating();
 
 protected:
     //! Обработчик событий
@@ -43,11 +43,13 @@ private:
     void renderScene();
 
 private:
-    bool _isAnimating = false;
-    QBackingStore* _backingStore = nullptr;
+    QBackingStore* _backingStore;
 
-    std::unique_ptr<PoolTableScene> _scene;
+    std::unique_ptr<GameScene> _scene;
     QElapsedTimer _updateTimer;
+
+    bool _gameFinish;
+    bool _gameWon;
 
 };
 

@@ -2,26 +2,16 @@
 #include <QApplication>
 #include "rasterwindow.h"
 
-constexpr unsigned WINDOW_WIDTH  = 800;
-constexpr unsigned WINDOW_HEIGHT = 800;
+constexpr unsigned WINDOW_WIDTH  = 400;
+constexpr unsigned WINDOW_HEIGHT = 400;
 
 RasterWindow::RasterWindow(QWindow* parent)
     : QWindow(parent),
       _backingStore(new QBackingStore(this)),
-      _scene(std::make_unique<PoolTableScene>(RectF{0, 0, float(WINDOW_WIDTH ), float(WINDOW_HEIGHT)}))
+      _scene(std::make_unique<GameScene>(RectF{0, 0, float(WINDOW_WIDTH ), float(WINDOW_HEIGHT)}))
 {
-    setMinimumSize(QSize(800, 800));
+    setMinimumSize(QSize(400, 400));
     _updateTimer.start();
-}
-
-bool RasterWindow::isAnimating() const
-{
-    return _isAnimating;
-}
-
-void RasterWindow::setAnimating()
-{
-    renderLater();
 }
 
 bool RasterWindow::event(QEvent* event)
@@ -63,7 +53,6 @@ void RasterWindow::keyPressEvent(QKeyEvent *event)
         break;
     default:
         QWindow::keyPressEvent(event);
-
     }
 }
 
@@ -74,7 +63,6 @@ void RasterWindow::renderLater()
 
 void RasterWindow::renderNow()
 {
-    // Метод в котором реализуется двойная буферизация
     if (!isExposed())
         return;
 
@@ -86,29 +74,25 @@ void RasterWindow::renderNow()
 
 void RasterWindow::updateScene()
 {
-    //Считаем количество секунд
     const float elapsedSeconds = float(_updateTimer.elapsed()) / 350.f;
 
     if (elapsedSeconds > 0) {
-        // перезапускаем таймер
         _updateTimer.restart();
-        // обновляем сцену
-        _scene->ballHitWall(elapsedSeconds);
-        _scene->ballHitPlatform(elapsedSeconds);
+        _scene->ballHitLet(elapsedSeconds);
     }
 }
 
 void RasterWindow::renderScene()
 {
-    QRect rect(0, 0, width(), height()); // Область на которой будем рисовать
+    QRect rect(0, 0, width(), height());
 
-    _backingStore->beginPaint(rect); // начниаем рисовать
-    QPaintDevice *device = _backingStore->paintDevice(); // Задаем координатную сетку на квадрате
+    _backingStore->beginPaint(rect);
+    QPaintDevice *device = _backingStore->paintDevice();
     QPainter painter;
 
-    painter.begin(device); // Задаем девайс
-    painter.fillRect(rect, Qt::red); // Разукрашиваем
-    _scene->redraw(painter); // применяем к сцене
+    painter.begin(device);
+    painter.fillRect(rect, QColor(0x00, 0xbf, 0xff));
+    _scene->redraw(painter);
 
     painter.end();
 

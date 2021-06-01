@@ -100,7 +100,7 @@ void GameScene::ballHitPlatform()
 void GameScene::ballHitBricks()
 {
     for (int i = 0; i < NUMBER_BRICKS; ++i) {
-        if (bricks[i]->getRect().contains(_ballPosition.x(), _ballPosition.y())) {
+        if (bricks[i]->getRect().contains(_ballPosition.x(), _ballPosition.y()) && !bricks[i]->isDestroyed()) {
             bricks[i]->setDestroyes(true);
             _ballSpeed.setX(-_ballSpeed.x());
             _ballSpeed.setY(-_ballSpeed.y());
@@ -145,10 +145,8 @@ void GameScene::movePlatform(const int &x)
         return;
 
     _platform->movePlatform(x);
-    int tmpVel = _ballPosition.y();
-    int tmpPos = _platform->getYPos();
-    if (_platform->getYPos() - _ballPosition.y() == _ballPosition.y())
-        _ballSpeed.setY(_ballSpeed.y() + _platform->getYVeclocity());
+//    if (_platform->getYPos() - _ballPosition.y() == _ballPosition.y())
+//        _ballSpeed.setY(_ballSpeed.y() + _platform->getYVeclocity());
 }
 
 void GameScene::finishGame(QPainter *painter, const QString &message)

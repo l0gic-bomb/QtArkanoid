@@ -9,12 +9,12 @@ namespace  {
 constexpr float MIDDLE = 400;
 
 //! ball
-constexpr float BALL_SPEED_X = 10;
-constexpr float BALL_SPEED_Y = -50;
+constexpr float BALL_SPEED_X = 50;
+constexpr float BALL_SPEED_Y = 50;
 constexpr float BALL_SIZE = 10;
 
 //! platform
-constexpr float PLATFORM_SPEED_X = 10;
+constexpr float PLATFORM_SPEED_X = 100;
 constexpr float PLATFORM_SPEED_Y = 0;
 
 constexpr float PLATFORM_POS_X = 200;
@@ -34,7 +34,7 @@ GameScene::GameScene(const RectF& bounds)
     _gameLose = false;
 
     _platform = new Platform({PLATFORM_POS_X, PLATFORM_POS_Y}, {PLATFORM_WIDTH, PLATFORM_HEIGHT}, {PLATFORM_SPEED_X, PLATFORM_SPEED_Y});
-
+    _platform->setXVeclocity(PLATFORM_SPEED_X);
     int k = 0;
     for (int i=0; i<5; i++) {
       for (int j=0; j<6; j++) {
@@ -102,7 +102,7 @@ void GameScene::ballHitBricks()
     for (int i = 0; i < NUMBER_BRICKS; ++i) {
         if (bricks[i]->getRect().contains(_ballPosition.x(), _ballPosition.y()) && !bricks[i]->isDestroyed()) {
             bricks[i]->setDestroyes(true);
-            _ballSpeed.setX(-_ballSpeed.x());
+            _ballSpeed.setX(_ballSpeed.x());
             _ballSpeed.setY(-_ballSpeed.y());
         }
     }
@@ -110,7 +110,7 @@ void GameScene::ballHitBricks()
 
 void GameScene::redraw(QPainter &painter)
 {
-    if (_gameWin) {
+    if (_gameWin) { 
         finishGame(&painter, YOU_WIN);
     } else if (_gameLose) {
         finishGame(&painter, YOU_LOSE);
@@ -131,8 +131,10 @@ void GameScene::redraw(QPainter &painter)
             if (!bricks[i]->isDestroyed()) {
                 ++k;
                 painter.drawRect(bricks[i]->getRect());
-            } else if (k == NUMBER_BRICKS)
-                _gameWin = true;
+            } else if (k == NUMBER_BRICKS) {
+                _gameWin  = true;
+                _gameLose = false;
+            }
         }
     }
 }

@@ -14,6 +14,13 @@ RasterWindow::RasterWindow(QWindow* parent)
     _updateTimer.start();
 }
 
+RasterWindow::~RasterWindow()
+{
+
+    delete _backingStore;
+    _scene->close();
+}
+
 bool RasterWindow::event(QEvent* event)
 {
     if (event->type() == QEvent::UpdateRequest) {
@@ -41,7 +48,7 @@ void RasterWindow::keyPressEvent(QKeyEvent *event)
     int x;
     switch (event->key()) {
     case Qt::Key_Escape:
-        qApp->exit();
+        close();
         break;
     case Qt::Key_Left:
         x = 5;

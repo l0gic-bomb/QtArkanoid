@@ -21,6 +21,8 @@ class RasterWindow : public QWindow
 public:
     //! Конструктор
     explicit RasterWindow(QWindow* parent = nullptr);
+    //! Деструктор
+    ~RasterWindow();
 
 protected:
     //! Обработчик событий

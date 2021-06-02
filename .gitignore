@@ -30,4 +30,6 @@
 *.exe
 *.out
 *.app
-arkanoid.pro.user
+
+# User setting
+*.pro.user

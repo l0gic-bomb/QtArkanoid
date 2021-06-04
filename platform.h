@@ -50,6 +50,8 @@ public:
     void setSize(const float& posX, const float& posY);
     //! Возврат размеров
     QSizeF getSize() const;
+    //! Возврат квадрата
+    QRectF getRect() const;
 
     //! Перемещение плафтформы
     void movePlatform(const int& x);

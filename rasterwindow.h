@@ -1,3 +1,8 @@
+/**
+ * \file  rasterwinodw.h
+ * \brief Класс отрисовки изображений
+*/
+
 #ifndef RASTERWINDOW_H
 #define RASTERWINDOW_H
 
@@ -14,7 +19,7 @@
 
 #include "gamescene.h"
 
-//! Класс отрисовки изображений
+/*! \brief Класс работы с окном для игры  */
 class RasterWindow : public QWindow
 {
     Q_OBJECT
@@ -23,9 +28,6 @@ public:
     explicit RasterWindow(QWindow* parent = nullptr);
     //! Деструктор
     ~RasterWindow();
-
-    //! Восстановление изначального положения элементов
-    void resetWindow();
 
 protected:
     //! Обработчик событий

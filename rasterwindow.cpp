@@ -20,11 +20,6 @@ RasterWindow::~RasterWindow()
     _scene->close();
 }
 
-void RasterWindow::resetWindow()
-{
-    _scene->resetState();
-}
-
 bool RasterWindow::event(QEvent* event)
 {
     if (event->type() == QEvent::UpdateRequest) {

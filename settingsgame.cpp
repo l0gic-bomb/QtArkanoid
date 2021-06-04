@@ -1,3 +1,8 @@
+/**
+ * \file  settingsgame.h
+ * \brief Класс настроек игры.
+*/
+
 #include "settingsgame.h"
 #include "ui_settingsgame.h"
 

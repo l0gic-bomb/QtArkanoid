@@ -80,6 +80,11 @@ QSizeF Platform::getSize() const
     return _platform.size();
 }
 
+QRectF Platform::getRect() const
+{
+    return _platform;
+}
+
 void Platform::movePlatform(const int &x)
 {
     _platform.moveTopLeft(QPointF(_platform.x() + x, _platform.y()));

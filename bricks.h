@@ -3,6 +3,7 @@
 
 #include <QRect>
 
+/*! /brief  */
 class Bricks
 {
 public:

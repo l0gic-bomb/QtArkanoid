@@ -1,7 +1,5 @@
 #include "bricks.h"
 
-const int SIZE_BRICK = 10;
-
 Bricks::Bricks(const int& x, const int& y)
 {
     destroyed = false;

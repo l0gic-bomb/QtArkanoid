@@ -2,6 +2,7 @@
  * \file  settingsgame.h
  * \brief Класс настроек игры.
 */
+
 #ifndef SETTINGSGAME_H
 #define SETTINGSGAME_H
 

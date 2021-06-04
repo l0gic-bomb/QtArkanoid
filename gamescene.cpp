@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <cmath>
 #include "gamescene.h"
 
 const QString YOU_WIN   = "Вы выиграли!";
@@ -90,10 +91,15 @@ void GameScene::ballHitPlatform()
     int tmpRightSidePlatfrom = _platform->getXPos() + _platform->getSize().width() - _ballSize.x();
     int tmpLeftSidePlatfrom  = _platform->getXPos();
 
+
     if (_ballPosition.y() > _platform->getYPos() - _ballSize.y()
                && _ballPosition.x() < tmpRightSidePlatfrom && _ballPosition.x() > tmpLeftSidePlatfrom) {
         _ballPosition.setY(_platform->getYPos() - _ballSize.y());
         _ballSpeed.setY(-_ballSpeed.y());
+        if (_ballSpeed.x() != 0)
+            _ballSpeed.setX(-_ballSpeed.x());
+        else
+            _ballSpeed.setX(-_ballSpeed.y());
     }
 }
 
@@ -104,13 +110,17 @@ void GameScene::ballHitBricks()
             bricks[i]->setDestroyes(true);
             _ballSpeed.setX(_ballSpeed.x());
             _ballSpeed.setY(-_ballSpeed.y());
+            if (_ballSpeed.x() != 0)
+                _ballSpeed.setX(-_ballSpeed.x());
+            else
+                _ballSpeed.setX(-_ballSpeed.y());
         }
     }
 }
 
 void GameScene::redraw(QPainter &painter)
 {
-    if (_gameWin) { 
+    if (_gameWin) {
         finishGame(&painter, YOU_WIN);
     } else if (_gameLose) {
         finishGame(&painter, YOU_LOSE);

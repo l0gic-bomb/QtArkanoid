@@ -9,8 +9,8 @@ namespace  {
 constexpr float MIDDLE = 400;
 
 //! ball
-constexpr float BALL_SPEED_X = 50;
-constexpr float BALL_SPEED_Y = 50;
+constexpr float BALL_SPEED_X = 0;
+constexpr float BALL_SPEED_Y = -30;
 constexpr float BALL_SIZE = 10;
 
 //! platform

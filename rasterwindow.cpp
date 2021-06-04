@@ -16,9 +16,13 @@ RasterWindow::RasterWindow(QWindow* parent)
 
 RasterWindow::~RasterWindow()
 {
-
     delete _backingStore;
     _scene->close();
+}
+
+void RasterWindow::resetWindow()
+{
+    _scene->resetState();
 }
 
 bool RasterWindow::event(QEvent* event)

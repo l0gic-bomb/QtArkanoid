@@ -14,9 +14,14 @@ class Menu : public QDialog
     Q_OBJECT
 
 public:
+    //! Конструктор
     explicit Menu();
+    //! Деструктор
     ~Menu();
 
+private slots:
+    void slShowWindow();     //!<
+    void slChangeSettings(); //!<
 
 private:
     Ui::Menu *ui;

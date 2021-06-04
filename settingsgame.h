@@ -1,3 +1,7 @@
+/**
+ * \file  settingsgame.h
+ * \brief Класс настроек игры.
+*/
 #ifndef SETTINGSGAME_H
 #define SETTINGSGAME_H
 
@@ -7,12 +11,15 @@ namespace Ui {
 class SettingsGame;
 }
 
+/*! /brief Класс настроек игры */
 class SettingsGame : public QDialog
 {
     Q_OBJECT
 
 public:
+    //! Конструктор
     explicit SettingsGame(QWidget *parent = nullptr);
+    //! Деструктор
     ~SettingsGame();
 
 private:

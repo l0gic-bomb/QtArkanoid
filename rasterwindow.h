@@ -24,6 +24,9 @@ public:
     //! Деструктор
     ~RasterWindow();
 
+    //! Восстановление изначального положения элементов
+    void resetWindow();
+
 protected:
     //! Обработчик событий
     bool event(QEvent* event) override;

@@ -97,7 +97,7 @@ void GameScene::ballHitPlatform()
         _ballPosition.setY(_platform->getYPos() - _ballSize.y());
         _ballSpeed.setY(-_ballSpeed.y());
         if (_ballSpeed.x() != 0)
-            _ballSpeed.setX(-_ballSpeed.x());
+            _ballSpeed.setX(_ballSpeed.x());
         else
             _ballSpeed.setX(-_ballSpeed.y());
     }
